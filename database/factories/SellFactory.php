@@ -24,6 +24,7 @@ class SellFactory extends Factory
         return [
             'user_id' => rand(1,10),
             'date' => now(),
+            'day' => 27,
             'amount' => rand(1,10),
             'price' => rand(10,17),
             'paid_amount' => rand(50,100),
