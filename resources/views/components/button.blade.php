@@ -1,0 +1,1 @@
+<input type="submit" {{ $attributes->merge(['value' => 'Guardar']) }}>

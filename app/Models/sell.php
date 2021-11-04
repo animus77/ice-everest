@@ -18,7 +18,7 @@ class sell extends Model
     {
         return $this->belongsTo(user::class);
     }
-/*
+
     public function setDayAttribute($value)
     {
         $date = date_create($value);
@@ -37,5 +37,4 @@ class sell extends Model
             $this->attributes['trip'] = $value;
         }
     }
-    */
 }
