@@ -46,7 +46,7 @@
         <x-slot name="title">Promociones recibidas</x-slot>
         <div class="bg-gray-200 flex flex-wrap justify-center p-2">
             @forelse($client_promo as $promotion)
-                <div>
+                <div class="p-2">
                     <img src="{{ $promotion->url }}" class="w-52 h-52 rounded-full bg-blue-300">
                     <p class="text-center">{{ $promotion->title }}</p>
                 </div>

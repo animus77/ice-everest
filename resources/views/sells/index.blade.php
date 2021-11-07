@@ -32,22 +32,22 @@
         <x-button value="consultar"></x-button>
     </form>
 </x-card>
-<section class="mx-auto m-2">
-    <div class="p-2 m-2 overflow-x-auto max-w-xl mx-auto ">
-        @for($i = 0; $i <= $group; $i++)
-            <button class="accordion">Viaje: {{ $i }}</button>
-            <div class="panel overflow-x-auto">
-                <table class="table-fixed w-full">
-                    <tbody>
-                        @foreach($sells as $sell)
-                            @if($sell->trip == $i)
-                                @include('sells.table')
-                            @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @endfor
+<section class="mx-auto max-w-xl p-2 m-2">
+    @for($i = 0; $i <= $group; $i++)
+        <button class="accordion">Viaje: {{ $i }}</button>
+        <div class="panel overflow-x-auto">
+            <table class="">
+                <tbody>
+                    @foreach($sells as $sell)
+                        @if($sell->trip == $i)
+                            @include('sells.table')
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endfor
+    <div class="p-2 m-2  mx-auto ">
     </div>
 </section>
 

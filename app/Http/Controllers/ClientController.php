@@ -5,9 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\sell;
 use App\Models\User;
+use App\Models\Promotion;
 
 class ClientController extends Controller
 {
+    public function edit(User $user)
+    {
+        $promotions = Promotion::all();
+
+        return view('client.promotion', compact(
+            'user', 'promotions'
+        ));
+    }
+
+    public function update(Request $request, User $user )
+    {
+        $user->promotions()->syncWithoutDetaching($request->get('promotions'));
+        
+        return back()->with('info', 'Promocion guardada');
+    }
+
     public function purchase(User $user)
     {
         $client = User::find($user->id);

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SellsController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PromotionController;
@@ -29,9 +30,14 @@ Route::middleware('auth')->group( function () {
     Route::view('products', 'admin.product');
     Route::view('users', 'admin.users');
 
-    Route::get('users/profile/{user}', [ClientController::class, 'profile'])->name('user.profile');
-    Route::get('users/purchase/{user}', [ClientController::class, 'purchase'])->name('user.purchase');
+    Route::get('user/profile/{user}', [ClientController::class, 'profile'])->name('user.profile');
+    Route::get('user/purchase/{user}', [ClientController::class, 'purchase'])->name('user.purchase');
+    Route::get('user/{user}', [ClientController::class, 'edit'])->name('user.edit');
+    Route::put('user/{user}', [ClientController::class, 'update'])->name('user.update');
 
+    Route::resource('users', UserController::class)->only([
+        'edit', 'update'
+    ]);
     Route::resource('sells', SellsController::class);
     Route::resource('promotions', PromotionController::class);
 });
