@@ -79,9 +79,18 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PromotionsRequest $request, Promotion $promotion)
     {
-        //
+        $promotion->update([
+            'name' => $request->name,
+            'url' => $request->url,
+            'description' => $request->description,
+            'purchase_price' => $request->purchase_price,
+            'sale_price' => $request->sale_price,
+            'point_price' => $request->point_price,
+        ]);
+
+        return back()->with('info', 'Actualizado con exito');
     }
 
     /**
@@ -90,8 +99,10 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Promotion $promotion)
     {
-        //
+        $promotion->delete();
+
+        return back()->with('info', 'Promocion eliminada');
     }
 }

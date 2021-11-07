@@ -1,5 +1,5 @@
 @extends('layouts.layout')
 @section('content')
-    @livewire('equipments')
+    @livewire('users')
     @livewireScripts
 @endsection

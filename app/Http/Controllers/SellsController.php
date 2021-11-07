@@ -28,7 +28,7 @@ class SellsController extends Controller
         $pieces_trip = [];
         $paid_trip = [];
 
-        for ($i=0; $i <=$group ; $i++) { 
+        for ($i = 0; $i <= $group; $i++) { 
             $trips = $sells->where('trip', $i)->sum('amount');
             array_push($pieces_trip, $trips);
 
@@ -95,29 +95,29 @@ class SellsController extends Controller
      */
     public function show($id)
     {
-        $sells = sell::whereMonth('date', $id)->orderBy('user_id', 'asc')->get();
-        $users = $sells->groupBy('user_id')->count('user_id');
-        $user = User::all();
+        $sells = sell::with('user')->whereMonth('date', $id)->orderBy('user_id', 'asc')->get();
+        $user = $sells->groupBy('user_id')->count('user_id');
+        $users = User::orderBy('id', 'asc')->get();
 
         $avg_consumptions = [];
         $quantities = [];
         $people = [];
 
-        for ($i = 1; $i <= $users; $i++) { 
+        for ($i = 1; $i <= $user; $i++) { 
             $avg = $sells->where('user_id', $i)->avg('amount');
             array_push($avg_consumptions, $avg);
 
             $quantity = $sells->where('user_id', $i)->sum('amount');
             array_push($quantities, $quantity);
 
-            $person = $user->where('id', $i)->sum('id');
+            $person = $users->where('id', $i)->sum('id');
             array_push($people, $person);
         }
 
         array_multisort($avg_consumptions, $people);
 
         return view('sells.show', compact(
-            'sells', 'avg_consumptions', 'quantities', 'people'
+            'sells', 'avg_consumptions', 'quantities', 'people', 'users'
         ));
     }
 

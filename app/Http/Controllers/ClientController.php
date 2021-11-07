@@ -28,7 +28,8 @@ class ClientController extends Controller
 
         $amount_ice = $client->sells->where('product', 'hielo')->sum('amount');
         $amount_water = $client->sells->where('product', 'agua')->sum('amount');
-        $payment = $client->sells->where('product', 'pago')->sum('amount');
+        $payment = $client->sells->where('product', 'pago')->sum('paid_amount');
+
         $debt = $client->sells->sum('debt_amount');
 
         $price_water = $client->sells->where('product', 'agua')->avg('price');
@@ -77,7 +78,7 @@ class ClientController extends Controller
         $purchase_point = round($water_point + $ice_point);
 
         return view('client.profile', compact(
-            'client_promo', 'client_product', 'client_equipment', 'payment',
+            'client', 'client_promo', 'client_product', 'client_equipment', 'payment',
             'debt', 'price_water', 'price_ice', 'points_promo', 'purchase_point'
         ));
     }

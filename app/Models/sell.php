@@ -37,4 +37,13 @@ class sell extends Model
             $this->attributes['trip'] = $value;
         }
     }
+
+    public function getBalanceAttribute()
+    {
+        //I´m not really sure about this code, but it works
+        $paid = $this->where('user_id', $this->user_id)->where('product', 'pago')->sum('paid_amount');
+        $debt = $this->where('user_id', $this->user_id)->sum('debt_amount');
+
+        return $debt- $paid;
+    }
 }

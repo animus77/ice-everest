@@ -1,22 +1,24 @@
-<p>Venta durante el mes</p>
-<ol>
-    @foreach($people as $person)
-        <li>{{ $person }}</li>
-    @endforeach
-</ol>
-<ol>
-    @foreach($avg_consumptions as $consumptions)
-        <li>{{ $consumptions }}</li>
-    @endforeach
-</ol>
-<ol>
-    @foreach($quantities as $quantity)
-        <li>{{ $quantity }}</li>
-    @endforeach
-</ol>
+@extends('layouts.layout')
+@section('content')
+{{--
+    <p>Venta durante el mes</p>
+    <ol>
+        @foreach($people as $person)
+            <li>{{ $person }}</li>
+        @endforeach
+    </ol>
+    <ol>
+        @foreach($avg_consumptions as $consumptions)
+            <li>{{ $consumptions }}</li>
+        @endforeach
+    </ol>
+    <ol>
+        @foreach($quantities as $quantity)
+            <li>{{ $quantity }}</li>
+        @endforeach
+    </ol>
+    --}}
 
-<p>diferenciar los clientes que consumen agua y/o hielo</p>
-<p>Se recomienda visitar los siguientes clientes:</p>
 <table>
     <thead>
         <tr>
@@ -28,11 +30,25 @@
             <th colspan="31">Cantidad</th>
         </tr>
     </thead>
-</table>
-<ol>
-    @foreach($sells as $sell)
-        <li>{{ $sell->amount }}</li>
+    <tbody>
+    @foreach($users as $user)
+        <tr>
+            <td rowspan="2">{{ $user->id }}</td>
+            <td rowspan="2">{{ $user->ref }}</td>
+            @foreach($sells as $sell)
+            @if($sell->user_id == $user->id)
+                    <td>{{ $sell->day }}</td>
+                @endif
+            @endforeach
+        </tr>
+        <tr>
+            @foreach($sells as $sell)
+                @if($sell->user_id == $user->id)
+                    <td>{{ $sell->amount }}</td>
+                @endif
+            @endforeach
+        </tr>
     @endforeach
-</ol>
-
-
+    </tbody>
+</table>
+@endsection

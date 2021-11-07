@@ -27,9 +27,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware('auth')->group( function () {
     Route::view('equipments', 'admin.equipment');
     Route::view('products', 'admin.product');
+    Route::view('users', 'admin.users');
 
-    Route::get('users/profile/{user}', [ClientController::class, 'profile']);
-    Route::get('users/purchase/{user}', [ClientController::class, 'purchase']);
+    Route::get('users/profile/{user}', [ClientController::class, 'profile'])->name('user.profile');
+    Route::get('users/purchase/{user}', [ClientController::class, 'purchase'])->name('user.purchase');
 
     Route::resource('sells', SellsController::class);
     Route::resource('promotions', PromotionController::class);

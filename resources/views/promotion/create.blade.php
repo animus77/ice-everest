@@ -1,33 +1,44 @@
-<form action="{{ route('promotions.store') }}" method="post">
-    <x-form name="name" for="name">
-        <x-slot name="title">Nombre</x-slot>
-        @error('name') {{ $message }} @enderror
-    </x-form>
+@extends('layouts.layout')
+@section('content')
+<article class="flex justify-center">
+    <x-card size="p-2 w-80">
+        <x-slot name="title">Nueva promocion</x-slot>
+        <form action="{{ route('promotions.store') }}" method="post" class="bg-gray-200 p-2 shadow-lg">
+            <div class="flex flex-wrap mb-2">
+                <label for="" class="font-semibold mr-2">Titulo</label>
+                <input type="text" class="bg-gray-400 p-1 outline-none w-full" name="name">
+                @error('name') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
+            </div>
+            <div class="flex flex-wrap mb-2">
+                <label for="" class="font-semibold mr-2">Descripcion</label>
+                <input type="text" class="bg-gray-400 p-1 outline-none w-full" name="description">
+                @error('description') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
+            </div>
+            <div class="flex flex-wrap mb-2">
+                <label for="" class="font-semibold mr-2">Url imagen</label>
+                <input type="text" class="bg-gray-400 p-1 outline-none w-full" name="url">
+                @error('url') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
+            </div>
+            <div class="flex flex-wrap justify-between mb-2">
+                <label for="" class="font-semibold mr-2">Precio de compra</label>
+                <input type="number" class="bg-gray-400 p-1 outline-none w-24" name="purchase_price">
+                @error('purchase_price') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
+            </div>
+            <div class="flex flex-wrap justify-between mb-2">
+                <label for="" class="font-semibold mr-2">Precio de venta</label>
+                <input type="number" class="bg-gray-400 p-1 outline-none w-24" name="sale_price">
+                @error('sale_price') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
+            </div>
+            <div class="flex flex-wrap justify-between mb-2">
+                <label for="" class="font-semibold mr-2">Precio en puntos</label>
+                <input type="number" class="bg-gray-400 p-1 outline-none w-24" name="point_price">
+                @error('point_price') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
+            </div>
+            
+            @csrf
+            <x-button></x-button>
+        </form>
+    </x-card>
 
-    <x-form name="url" for="url">
-        <x-slot name="title">Url</x-slot>
-        @error('url') {{ $message }} @enderror
-    </x-form>
-    
-    <x-form name="description" for="description">
-        <x-slot name="title">Descripcion</x-slot>
-    </x-form>
-    
-    <x-form name="purchase_price" type="number" min="0" for="purchase_price">
-        <x-slot name="title">Precio de compra</x-slot>
-        @error('purchase_price') {{ $message }} @enderror
-    </x-form>
-    
-    <x-form name="sale_price" type="number" min="0" for="sale_price">
-        <x-slot name="title">Precio de venta</x-slot>
-        @error('sale_price') {{ $message }} @enderror
-    </x-form>
-    
-    <x-form name="point_price" type="number" min="0" for="point_price">
-        <x-slot name="title">Precio en puntos</x-slot>
-        @error('point_price') {{ $message }} @enderror
-    </x-form>
-    
-    @csrf
-    <x-button></x-button>
-</form>
+</article>
+@endsection
