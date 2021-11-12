@@ -30,7 +30,7 @@
                     </td>
                 </tr>
                 @empty
-                <p>Aun no hay registros</p>
+                <p class="text-center text-xl p-2">Aun no hay registros</p>
                 @endforelse
             </tbody>
         </table>

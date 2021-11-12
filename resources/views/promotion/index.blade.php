@@ -2,7 +2,7 @@
 @section('content')
 
 <article class="grid sm:grid-cols-3 grid-cols-1 gap-4 p-2">
-    @foreach($promotions as $promotion)
+    @forelse($promotions as $promotion)
         <section class="w-52 rounded-lg mx-auto">
             <img src="{{ $promotion->url }}" class="w-52 h-52 rounded-t-lg shadow-lg">
             <div class="bg-gray-200 rounded-b-lg shadow-lg">
@@ -28,6 +28,8 @@
                 </form>
             </div>
         </section>
-    @endforeach
+    @empty
+    <p>Sin promociones</p>
+    @endforelse
 </article>
 @endsection

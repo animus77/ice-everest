@@ -10,13 +10,15 @@
             </div>
             <p><strong>Promociones</strong></p>
             <div class="m-2 flex flex-wrap p-2">
-            @foreach($promotions as $promotion)
+            @forelse($promotions as $promotion)
                 <div class="p-2">
                     <input type="checkbox" name="promotions[]" value="{{ $promotion->id }}">
                     <label>{{ $promotion->name }}</label>
                     <img src="{{ $promotion->url }}" alt="promociones" class="w-20 h-20">
                 </div>
-            @endforeach
+            @empty
+            <p>Sin promociones disponibles</p>
+            @endforelse
             </div>
 
             @csrf

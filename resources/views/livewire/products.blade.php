@@ -24,11 +24,11 @@
                     <td class="p-2 text-center">{{ $product->id }}</td>
                     <td class="p-2 text-center">{{ $product->name }}</td>
                     <td class="p-2 text-center">
-                        <button wire:click.prevent='destroy({{ $product->id }})' class="bg-red-400 py-1 px-2 mt-2 font-semibold hover:bg-red-300 rounded shadow">Eliminar</button>
+                    <button wire:click.prevent='destroy({{ $product->id }})' class="bg-red-400 py-1 px-2 mt-2 font-semibold hover:bg-red-300 rounded shadow">Eliminar</button>
                     </td>
                 </tr>
                 @empty
-                <p>Sin registros</p>
+                <p class="text-center text-xl p-2">Sin registros</p>
                 @endforelse
             </tbody>
         </table>

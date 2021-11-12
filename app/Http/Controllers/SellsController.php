@@ -7,8 +7,14 @@ use App\Models\sell;
 use App\Models\User;
 use App\Http\Requests\SellsRequest;
 
+use function Ramsey\Uuid\v2;
+
 class SellsController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('permission:edit articles')->only(['index', 'create']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -96,31 +102,28 @@ class SellsController extends Controller
     public function show($id)
     {
         $sells = sell::with('user')->whereMonth('date', $id)->orderBy('user_id', 'asc')->get();
-        $user = $sells->groupBy('user_id')->count('user_id');
+        
         $users = User::orderBy('id', 'asc')->get();
+        $user = $users->count('user_id');
 
-        $avg_consumptions = [];
-        $quantities = [];
-        $people = [];
+        $debts = [];
+        $payments = [];
+        
+        for ($i = 1; $i <= $user; $i++) {
+            $debt = $sells->where('user_id', $i)->sum('debt_amount');
+            array_push($debts, $debt);
 
-        for ($i = 1; $i <= $user; $i++) { 
-            $avg = $sells->where('user_id', $i)->avg('amount');
-            array_push($avg_consumptions, $avg);
-
-            $quantity = $sells->where('user_id', $i)->sum('amount');
-            array_push($quantities, $quantity);
-
-            $person = $users->where('id', $i)->sum('id');
-            array_push($people, $person);
+            $paid = $sells->where('user_id', $i)->where('product', 'pago')->sum('paid_amount');
+            array_push($payments, $paid);
         }
-
-        array_multisort($avg_consumptions, $people);
-
+        
+        $deudas = array_map(function( $v1, $v2 ){return $v1 - $v2;}, $debts, $payments);
+        // array_merge($deudas);
+        
         return view('sells.show', compact(
-            'sells', 'avg_consumptions', 'quantities', 'people', 'users'
+            'sells', 'users', 'id', 'deudas'
         ));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

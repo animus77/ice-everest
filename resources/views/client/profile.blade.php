@@ -28,6 +28,11 @@
                 @else
                     <li class="p-1">Precio agua: <strong>${{ $price_water }}</strong></li>
                 @endif
+                @if($client->url_document)
+                <li>
+                    <a href="{{ $client->url_document }}" class="m-2 bg-blue-400 py-1 px-2 mt-2 font-semibold hover:bg-blue-300 rounded shadow">Ver carta Compromiso</a>
+                </li>
+                @endif
             </ul>
         </div>
         <div class="flex justify-center">
