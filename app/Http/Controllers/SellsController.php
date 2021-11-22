@@ -7,14 +7,13 @@ use App\Models\sell;
 use App\Models\User;
 use App\Http\Requests\SellsRequest;
 
-use function Ramsey\Uuid\v2;
-
 class SellsController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('permission:edit articles')->only(['index', 'create']);
+        $this->middleware('permission:sells');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +35,8 @@ class SellsController extends Controller
 
         for ($i = 0; $i <= $group; $i++) { 
             $trips = $sells->where('trip', $i)->sum('amount');
-            array_push($pieces_trip, $trips);
+            // array_push($pieces_trip, $trips);
+            $pieces_trip[] = $trips;
 
             $payments = $sells->where('trip', $i)->sum('paid_amount');
             array_push($paid_trip, $payments);

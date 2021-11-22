@@ -6,12 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\sell;
 use App\Models\User;
 use App\Models\Promotion;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:users')->only(['edit']);
+        $this->middleware('permission:users')->only(['update']);
+        $this->middleware('permission:purchase')->only(['purchase']);
+        $this->middleware('permission:profile')->only(['profile']);
+    }
+    
     public function edit(User $user)
     {
-        $promotions = Promotion::all();
+        $promotions = Promotion::where('available', 1)->get();
 
         return view('client.promotion', compact(
             'user', 'promotions'
@@ -27,17 +36,24 @@ class ClientController extends Controller
 
     public function purchase(User $user)
     {
+        $usuario = Auth::id();
         $client = User::find($user->id);
         $purchases = Sell::where('user_id', $user->id)->orderBy('date', 'asc')->get();
 
-        return view('client.purchase', compact(
-            'client', 'purchases'
-        ));
+        if ($usuario == $user->id || $usuario == 1) {
+            return view('client.purchase', compact(
+                'client', 'purchases', 'usuario'
+            ));
+        } else {
+            return back();
+        }
     }
 
     public function profile(User $user)
     {
+        $usuario = Auth::id();
         $client = User::find($user->id);
+        $promotions = Promotion::where('available', 1)->get();
 
         $client_promo = $client->promotions;
         $client_product = $client->products;
@@ -93,10 +109,17 @@ class ClientController extends Controller
         }
 
         $purchase_point = round($water_point + $ice_point);
+        $balance = $debt - $payment;
+        $points = $purchase_point - $points_promo;
 
-        return view('client.profile', compact(
-            'client', 'client_promo', 'client_product', 'client_equipment', 'payment',
-            'debt', 'price_water', 'price_ice', 'points_promo', 'purchase_point'
-        ));
+        if ($usuario == $user->id || $usuario == 1) {
+            return view('client.profile', compact(
+                'client', 'client_promo', 'client_product', 'client_equipment', 'balance',
+                'price_water', 'price_ice', 'points', 'promotions'
+            ));
+        } else {
+            return back();
+
+        }
     }
 }

@@ -20,6 +20,13 @@
                 @error('url') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
             </div>
             <div class="flex flex-wrap justify-between mb-2">
+                <label for="" class="font-semibold mr-2">Disponibilidad</label>
+                <select name="available" class="bg-gray-400 p-1 outline-none">
+                    <option value="1">Disponible</option>
+                    <option value="0">No disponible</option>
+                </select>
+            </div>
+            <div class="flex flex-wrap justify-between mb-2">
                 <label for="" class="font-semibold mr-2">Precio de compra</label>
                 <input type="number" class="bg-gray-400 p-1 outline-none w-24" name="purchase_price" value="{{ $promotion->purchase_price}}">
                 @error('purchase_price') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror

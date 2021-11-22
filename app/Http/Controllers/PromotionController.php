@@ -8,6 +8,11 @@ use App\Http\Requests\PromotionsRequest;
 
 class PromotionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:promotions')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,6 +47,7 @@ class PromotionController extends Controller
             'name' => $request->name,
             'url' => $request->url,
             'description' => $request->description,
+            'available' => 1,
             'purchase_price' => $request->purchase_price,
             'sale_price' => $request->sale_price,
             'point_price' => $request->point_price,
@@ -85,6 +91,7 @@ class PromotionController extends Controller
             'name' => $request->name,
             'url' => $request->url,
             'description' => $request->description,
+            'available' => $request->available,
             'purchase_price' => $request->purchase_price,
             'sale_price' => $request->sale_price,
             'point_price' => $request->point_price,

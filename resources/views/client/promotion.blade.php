@@ -15,6 +15,7 @@
                     <input type="checkbox" name="promotions[]" value="{{ $promotion->id }}">
                     <label>{{ $promotion->name }}</label>
                     <img src="{{ $promotion->url }}" alt="promociones" class="w-20 h-20">
+                    <span>puntos: {{ $promotion->point_price }}</span>
                 </div>
             @empty
             <p>Sin promociones disponibles</p>

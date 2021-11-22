@@ -18,6 +18,7 @@ class CreatePromotionsTable extends Migration
             $table->string('name');
             $table->text('url')->nullable();
             $table->text('description');
+            $table->integer('available');
             $table->integer('purchase_price');
             $table->integer('sale_price');
             $table->integer('point_price');

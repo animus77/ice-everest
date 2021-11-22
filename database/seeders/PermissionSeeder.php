@@ -19,10 +19,38 @@ class PermissionSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        Permission::create(['name' => 'edit articles']);
+        Permission::create(['name' => 'sells']);
+        Permission::create(['name' => 'promotions']);
+        Permission::create(['name' => 'equipments']);
+        Permission::create(['name' => 'products']);
+        Permission::create(['name' => 'users']);
 
-        $role1 = Role::create(['name' => 'writer']);
-        $role1->givePermissionTo('edit articles');
+        Permission::create(['name' => 'purchase']);
+        Permission::create(['name' => 'profile']);
+
+        Permission::create(['name' => 'see_links']);
+        Permission::create(['name' => 'profile_link']);
+        Permission::create(['name' => 'purchase_links']);
+
+        $role1 = Role::create(['name' => 'admin']);
+        $role2 = Role::create(['name' => 'client']);
+
+        $role1->givePermissionTo([
+            'users',
+            'sells',
+            'promotions',
+            'equipments',
+            'products',
+            'purchase',
+            'profile'
+        ]);
+
+        $role2->givePermissionTo([
+            'purchase',
+            'profile',
+            'see_links'
+        ]);
+
         $user = User::find(1);
         $user->assignRole($role1);
         

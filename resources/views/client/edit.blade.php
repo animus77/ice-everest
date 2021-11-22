@@ -42,6 +42,13 @@
                     <label>{{ $equipment->name }}</label>
                 </div>
             @endforeach
+            <p><strong>Permiso</strong></p>
+            @foreach($roles as $rol)
+                <div>
+                    <input type="checkbox" name="roles[]" value="{{ $rol->id }}">
+                    <label>{{ $rol->name }}</label>
+                </div>
+            @endforeach
             
             @csrf
             @method('PUT')

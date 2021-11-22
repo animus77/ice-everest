@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SellsController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PromotionController;
+use Laravel\Jetstream\Rules\Role;
+use App\Models\Promotion;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +23,18 @@ Route::get('/', function () {
     return view('everest');
 });
 
+Route::view('promociones', 'admin.promotions', [
+    'promotions' => Promotion::where('available', 1)->get()
+]);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
 Route::middleware('auth')->group( function () {
-    Route::view('equipments', 'admin.equipment');
-    Route::view('products', 'admin.product');
-    Route::view('users', 'admin.users');
+    Route::view('equipments', 'admin.equipment')->middleware('permission:equipments');
+    Route::view('products', 'admin.product')->middleware('permission:products');
+    Route::view('users', 'admin.users')->middleware('permission:users');
 
     Route::get('user/profile/{user}', [ClientController::class, 'profile'])->name('user.profile');
     Route::get('user/purchase/{user}', [ClientController::class, 'purchase'])->name('user.purchase');
