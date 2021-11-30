@@ -23,14 +23,13 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'promotions']);
         Permission::create(['name' => 'equipments']);
         Permission::create(['name' => 'products']);
+        Permission::create(['name' => 'contact']);
         Permission::create(['name' => 'users']);
 
         Permission::create(['name' => 'purchase']);
         Permission::create(['name' => 'profile']);
 
         Permission::create(['name' => 'see_links']);
-        Permission::create(['name' => 'profile_link']);
-        Permission::create(['name' => 'purchase_links']);
 
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'client']);
@@ -42,7 +41,9 @@ class PermissionSeeder extends Seeder
             'equipments',
             'products',
             'purchase',
-            'profile'
+            'profile',
+            'see_links',
+            'contact'
         ]);
 
         $role2->givePermissionTo([

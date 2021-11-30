@@ -17,7 +17,7 @@
                 @foreach($users as $user)
                 <tr class="border-b border-blue-400">
                     <td class="p-2 text-sm">{{ $user->id }}</td>
-                    <td class="py-2 text-sm">{{ $user->ref }}</td>
+                    <td class="py-2 text-sm">{{ $user->name }}</td>
                     <td class="py-2 text-sm">
                         <a href="{{ route('users.edit', $user) }}" class="bg-blue-400 py-1 px-2 mt-2 hover:bg-blue-300 rounded shadow">Editar</a>
                     </td>

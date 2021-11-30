@@ -21,7 +21,7 @@ class PromotionController extends Controller
     public function index()
     {
         return view('promotion.index', [
-            'promotions' => Promotion::all()
+            'promotions' => Promotion::orderBy('available', 'desc')->get()
         ]);
     }
 

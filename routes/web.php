@@ -5,7 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SellsController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PromotionController;
-use Laravel\Jetstream\Rules\Role;
+use App\Http\Controllers\contactController;
+
 use App\Models\Promotion;
 
 /*
@@ -20,12 +21,18 @@ use App\Models\Promotion;
 */
 
 Route::get('/', function () {
-    return view('everest');
+    return view('frontend.index');
 });
 
-Route::view('promociones', 'admin.promotions', [
+Route::view('promociones', 'frontend.promotions', [
     'promotions' => Promotion::where('available', 1)->get()
 ]);
+
+Route::view('privacidad', 'frontend.privacidad');
+Route::view('contacto', 'frontend.contacto');
+Route::view('servicios', 'frontend.servicios');
+Route::view('productos', 'frontend.productos');
+Route::view('requisitos', 'frontend.requisitos');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -44,6 +51,11 @@ Route::middleware('auth')->group( function () {
     Route::resource('users', UserController::class)->only([
         'edit', 'update'
     ]);
+
+    Route::resource('contact', contactController::class)->only([
+        'index', 'store', 'destroy'
+    ]);
+    
     Route::resource('sells', SellsController::class);
     Route::resource('promotions', PromotionController::class);
 });

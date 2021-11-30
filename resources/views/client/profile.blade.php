@@ -7,15 +7,17 @@
             <ul>
                 <li class="p-1">Referencia: <strong>{{ $client->ref }}</strong></li>
                 <li class="p-1">Direccion: <strong>{{ $client->address }}</strong></li>
-                <li class="p-1">Consumo:
+                <li class="p-1 flex flex-wrap">Consumo:
                     @foreach($client_product as $product)
                         <span class="bg-blue-400 rounded-lg p-1 m-1 text-sm">{{ $product->name }}</span>
                     @endforeach
                 </li>
                 <li class="p-1">Equipos:
-                    @foreach($client_equipment as $equipment)
-                        <span class="bg-blue-400 rounded-lg p-1 m-1 text-sm">{{ $equipment->name }}</span>
-                    @endforeach
+                    <div class="flex flex-wrap">
+                        @foreach($client_equipment as $equipment)
+                            <span class="bg-blue-400 rounded-lg p-1 m-1 text-sm">{{ $equipment->name }}</span>
+                        @endforeach
+                    </div>
                 </li>
                 @if($price_ice == 0)
                     <li class="p-1">Precio hielo: <strong>No consume hielo</strong></li>

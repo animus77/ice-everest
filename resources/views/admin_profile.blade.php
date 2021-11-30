@@ -21,7 +21,7 @@
             <li class="p-1"><a href="{{ url('equipments') }}">Nuevo equipo</a></li>
             <li class="p-1"><a href="{{ url('products') }}">Nuevo producto</a></li>
             <li class="p-1"><a href="{{ url('users') }}">Consultar clientes</a></li>
-            <li class="p-1"><a href="#">Permisos</a></li>
+            <li class="p-1"><a href="{{ route('contact.index') }}">Solicitudes</a></li>
         </ol>
     </x-card>
     <x-card size="p-0">

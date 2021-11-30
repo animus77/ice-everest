@@ -12,7 +12,8 @@ class Users extends Component
     public function render()
     {
         return view('livewire.users', [
-            'users' => User::where('ref', 'LIKE', "%$this->search%")->get()
+            'users' => User::where('name', 'LIKE', "%$this->search%")
+                ->orderby('id', 'asc')->get()
         ]);
     }
 }
