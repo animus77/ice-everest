@@ -40,9 +40,13 @@ class ClientController extends Controller
         $client = User::find($user->id);
         $purchases = Sell::where('user_id', $user->id)->orderBy('date', 'asc')->get();
 
+        $payment = $purchases->sum('paid_amount');
+        $debt = $purchases->sum('debt_amount');
+        $balance = $debt - $payment;
+
         if ($usuario == $user->id || $usuario == 1) {
             return view('client.purchase', compact(
-                'client', 'purchases', 'usuario'
+                'client', 'purchases', 'usuario', 'balance'
             ));
         } else {
             return back();

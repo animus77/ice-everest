@@ -1,6 +1,6 @@
 @if($sell->balance != 0 && $sell->order == 1)
     <tr class="border-b border-blue-400 bg-red-200">
-        <td class="text-sm font-semibold text-blue-400 w-3/12"><a href="{{route('user.profile', $sell->user_id)}}">{{ $sell->user->ref }}</a></td>
+        <td class="text-sm font-semibold text-blue-400 w-3/12"><a href="{{route('user.purchase', $sell->user_id)}}">{{ $sell->user->ref }}</a></td>
         <td class="text-sm text-center text-blue-400 w-1/12">{{ $sell->amount }}</td>
         <td class="text-sm text-center text-blue-400 w-1/12">${{ $sell->paid_amount }}</td>
         <td class="text-sm text-center text-blue-400 w-1/12">${{ $sell->debt_amount }}</td>
@@ -30,7 +30,7 @@
     </tr>
 @elseif($sell->balance != 0 && $sell->order == 0)
     <tr class="border-b border-blue-400 bg-red-200">
-        <td class="text-sm font-semibold w-3/12"><a href="{{route('user.profile', $sell->user_id)}}">{{ $sell->user->ref }}</a></td>
+        <td class="text-sm font-semibold w-3/12"><a href="{{route('user.purchase', $sell->user_id)}}">{{ $sell->user->ref }}</a></td>
         <td class="text-sm text-center w-1/12">{{ $sell->amount }}</td>
         <td class="text-sm text-center w-1/12">${{ $sell->paid_amount }}</td>
         <td class="text-sm text-center w-1/12">${{ $sell->debt_amount }}</td>

@@ -4,6 +4,7 @@
     <x-card size="m-2">
         <x-slot name="title">Consumo de cliente</x-slot>
             <p class="p-2">Nombre: <strong>{{ $client->name }}</strong></p>
+            <p class="p-2">Deuda actual: <strong>${{ $balance }}</strong></p>
     </x-card>
     <section class="bg-gray-200 m-2 overflow-x-auto">
         <table class="mx-auto">
