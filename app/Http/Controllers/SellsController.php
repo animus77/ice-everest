@@ -76,21 +76,26 @@ class SellsController extends Controller
      */
     public function store(SellsRequest $request)
     {
-        Sell::create([
-            'user_id' => $request->user_id,
-            'date' => $request->date,
-            'day' => $request->date,
-            'amount' => $request->amount,
-            'price' => $request->price,
-            'paid_amount' => $request->paid_amount,
-            'debt_amount' => $request->debt_amount,
-            'product' => $request->product,
-            'order' => $request->order,
-            'trip' => $request->trip,
-            'notes' => $request->notes
-        ]);
+        if ($request->paid_amount == 0 && $request->debt_amount == 0) {
+            return back()->with('info', 'Error con el importe');
+        } else {
+            Sell::create([
+                'user_id' => $request->user_id,
+                'date' => $request->date,
+                'day' => $request->date,
+                'amount' => $request->amount,
+                'price' => $request->price,
+                'paid_amount' => $request->paid_amount,
+                'debt_amount' => $request->debt_amount,
+                'product' => $request->product,
+                'order' => $request->order,
+                'trip' => $request->trip,
+                'notes' => $request->notes
+            ]);
+    
+            return back()->with('info', 'Registro guardado');
+        }
 
-        return back()->with('info', 'Registro guardado');
     }
 
     /**

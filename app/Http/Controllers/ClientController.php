@@ -40,7 +40,7 @@ class ClientController extends Controller
         $client = User::find($user->id);
         $purchases = Sell::where('user_id', $user->id)->orderBy('date', 'asc')->get();
 
-        $payment = $purchases->sum('paid_amount');
+        $payment = $purchases->where('product', 'pago')->sum('paid_amount');
         $debt = $purchases->sum('debt_amount');
         $balance = $debt - $payment;
 
