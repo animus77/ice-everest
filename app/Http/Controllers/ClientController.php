@@ -82,15 +82,18 @@ class ClientController extends Controller
 
         switch ($price_water) {
             case 10:
-                $water_point = $amount_water*.7;
+                $water_point = $amount_water*.6;
                 break;
             case 11:
-                $water_point = $amount_water*.8;
+                $water_point = $amount_water*.7;
                 break;
             case 12:
-                $water_point = $amount_water*.9;
+                $water_point = $amount_water*.8;
                 break;
             case 13:
+                $water_point = $amount_water*.9;
+                break;
+            case 15:
                 $water_point = $amount_water;
                 break;
             default:
