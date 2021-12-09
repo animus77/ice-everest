@@ -17,6 +17,13 @@ class ClientController extends Controller
         $this->middleware('permission:purchase')->only(['purchase']);
         $this->middleware('permission:profile')->only(['profile']);
     }
+
+    public function promotion()
+    {
+        return view('frontend.promotions', [
+            'promotions' => Promotion::where('available', 1)->get()
+        ]);
+    }
     
     public function edit(User $user)
     {

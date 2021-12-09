@@ -24,9 +24,7 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-// Route::view('promociones', 'frontend.promotions', [
-//     'promotions' => Promotion::where('available', 1)->get()
-// ]);
+Route::get('promociones', [ClientController::class, 'promotion']);
 
 Route::view('privacidad', 'frontend.privacidad');
 Route::view('contacto', 'frontend.contacto');
