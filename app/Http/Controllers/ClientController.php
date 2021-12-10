@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\sell;
+use App\Models\Sell;
 use App\Models\User;
 use App\Models\Promotion;
 use Illuminate\Support\Facades\Auth;
