@@ -7,7 +7,6 @@ use App\Models\Contact;
 
 class contactController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('permission:contact')->only([

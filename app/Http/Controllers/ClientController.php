@@ -133,7 +133,6 @@ class ClientController extends Controller
             ));
         } else {
             return back();
-
         }
     }
 }
