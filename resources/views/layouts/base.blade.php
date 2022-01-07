@@ -54,7 +54,7 @@
             <div class="m-2">
                 <p class="text-xl mb-1">Síguenos en</p>
                 <ol>
-                    <li><a href="#">Facebook</a></li>
+                    <li><a href="https://www.facebook.com/IceEverest">Facebook</a></li>
                 </ol>
             </div>
             <div class="m-2">

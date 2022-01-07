@@ -13,7 +13,7 @@ class Users extends Component
     {
         return view('livewire.users', [
             'users' => User::where('name', 'LIKE', "%$this->search%")
-                ->orderby('id', 'asc')->get()
+                ->orderby('id', 'desc')->get()
         ]);
     }
 }

@@ -16,25 +16,25 @@
                 @error('user_id')<span class="text-sm text-red-600 mb-1 p-1">{{ $message }}</span>@enderror
             </div>
 
-            <div class="flex justify-between flex flex-wrap mb-2">
+            <div class="flex justify-between flex-wrap mb-2">
                 <label for="" class="font-semibold mr-2">Cantidad</label>
                 <input id="" class="bg-gray-400 p-1 outline-none w-20" type="number" name="amount" min="0" value="0">
                 @error('amount') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
             </div>
 
-            <div class="flex justify-between flex flex-wrap mb-2">
+            <div class="flex justify-between flex-wrap mb-2">
                 <label for="" class="font-semibold mr-2">Precio</label>
                 <input id="" class="bg-gray-400 p-1 outline-none w-20" type="number" name="price" min="0" value="0">
                 @error('price') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
             </div>
 
-            <div class="flex justify-between flex flex-wrap mb-2">
+            <div class="flex justify-between flex-wrap mb-2">
                 <label for="" class="font-semibold mr-2">Importe pagado</label>
                 <input id="" class="bg-gray-400 p-1 outline-none w-20" type="number" name="paid_amount" min="0" value="0">
                 @error('paid_amount') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
             </div>
 
-            <div class="flex justify-between flex flex-wrap mb-2">
+            <div class="flex justify-between flex-wrap mb-2">
                 <label for="" class="font-semibold mr-2">Importe debe</label>
                 <input id="" class="bg-gray-400 p-1 outline-none w-20" type="number" name="debt_amount" min="0" value="0">
                 @error('debt_amount') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
@@ -57,9 +57,9 @@
                 </select>
             </div>
 
-            <div class="flex flex-wrap mb-2">
+            <div class="flex justify-between flex-wrap mb-2">
                 <label for="" class="font-semibold mr-2">No. de viaje</label>
-                <input id="" class="bg-gray-400 p-1 outline-none w-full" type="number" name="trip" min="0">
+                <input id="" class="bg-gray-400 p-1 outline-none w-20" type="number" name="trip" min="0">
                 @error('trip') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
             </div>
 
