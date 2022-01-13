@@ -53,7 +53,7 @@
 
 <section class="flex justify-center flex-wrap">
     <div class="p-2 bg-gray-200 m-2 shadow-lg">
-        <p class="text-xl text-center">Piezas vendidas</p>
+        <p class="text-xl text-center">Piezas</p>
         <ul>
             <li>Viaje 0: <strong>{{ $ice_pieces }}</strong></li>
             @foreach($pieces_trip as $piece)

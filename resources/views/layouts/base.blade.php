@@ -7,6 +7,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="https://i.ibb.co/cFT0Mb8/logo.png" type="image/x-icon">
     <title>Everest</title>
+    <!-- Global site tag (gtag.js) - Google Analytics --> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-217050510-1"></script> 
+    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-217050510-1'); </script> 
 </head>
 <body class="bg-gray-200">
     <Header class="bg-center bg-cover bg-top md:h-52" style="background-image: url(https://i.ibb.co/2SrXnQy/fondos.jpg);">

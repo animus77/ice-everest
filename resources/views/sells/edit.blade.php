@@ -60,7 +60,7 @@
 
             <div class="flex flex-wrap mb-2">
                 <label for="" class="font-semibold mr-2">No. de viaje</label>
-                <input id="" class="bg-gray-400 p-1 outline-none w-full" type="number" name="trip" min="0" value="{{ $sell->trip }}">
+                <input id="" class="bg-gray-400 p-1 outline-none w-20" type="number" name="trip" min="0" value="{{ $sell->trip }}">
                 @error('trip') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
             </div>
 
