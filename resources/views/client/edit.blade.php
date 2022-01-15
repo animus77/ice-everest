@@ -11,7 +11,7 @@
             </div>
             <div class="flex flex-wrap mb-2">
                 <label for="" class="font-semibold mr-2">Correo</label>
-                <input type="text" class="bg-gray-400 p-1 outline-none w-full" name="email" value="{{ $user->email }}" readonly>
+                <input type="text" class="bg-gray-400 p-1 outline-none w-full" name="email" value="{{ $user->email }}">
                 @error('email') <span class="text-sm text-red-600 mb-1 p-1 w-60">{{ $message }}</span> @enderror
             </div>
             <div class="flex flex-wrap mb-2">

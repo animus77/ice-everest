@@ -107,7 +107,7 @@
                 </tr>
                 <tr class="border-t border-blue-600">
                     <td class="px-2">Total</td>
-                    <td class="px-2">Efectivo: <strong>${{ $ice_payment + $water_payment + $total_payment }}</strong></td>
+                    <td class="px-2">Efectivo: <strong>${{ $ice_payment + $water_payment }}</strong></td>
                 </tr>
             </tbody>
         </table>
