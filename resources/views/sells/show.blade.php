@@ -20,7 +20,7 @@
         @foreach($users as $user)
             <tr class="border-b border-blue-400">
                 @foreach($deudas as $deuda)
-                    @if($loop->iteration == $user->id && $deuda != 0)
+                    @if($loop->iteration == $user->id && $deuda > 0)
                         <td rowspan="2" class="bg-red-200">{{ $user->id }}</td>
                         <td rowspan="2" class="bg-red-200">{{ $user->ref }}</td>
                         <td rowspan="2" class="bg-red-200 text-center">${{ $deuda }}</td>

@@ -7,6 +7,7 @@ use App\Models\Sell;
 use App\Models\User;
 use App\Models\Promotion;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\DocBlock\Tags\See;
 
 class ClientController extends Controller
 {
@@ -44,8 +45,17 @@ class ClientController extends Controller
     public function purchase(User $user)
     {
         $usuario = Auth::id();
+        $client_purchases = [];
+
         $client = User::find($user->id);
-        $purchases = Sell::where('user_id', $user->id)->orderBy('date', 'asc')->get();
+        $purchases = Sell::where('user_id', $user->id)->orderBy('date', 'desc')->get();
+        $ice_price = $purchases->where('product', 'hielo')->avg('price');
+        $water_price = $purchases->where('product', 'agua')->avg('price');
+
+        for ($i = 1; $i <= 12; $i++) {
+            $client_purchase = Sell::where('user_id', $user->id)->whereMonth('date', $i)->sum('amount');
+            $client_purchases[] = $client_purchase;
+        }
 
         $payment = $purchases->where('product', 'pago')->sum('paid_amount');
         $debt = $purchases->sum('debt_amount');
@@ -53,7 +63,7 @@ class ClientController extends Controller
 
         if ($usuario == $user->id || $usuario == 1) {
             return view('client.purchase', compact(
-                'client', 'purchases', 'usuario', 'balance'
+                'client', 'purchases', 'usuario', 'balance', 'client_purchases', 'ice_price', 'water_price'
             ));
         } else {
             return back();
