@@ -52,6 +52,9 @@ class ClientController extends Controller
         $ice_price = $purchases->where('product', 'hielo')->avg('price');
         $water_price = $purchases->where('product', 'agua')->avg('price');
 
+        $water_amount = $purchases->where('product', 'agua')->sum('amount');
+        $ice_amount = $purchases->where('product', 'hielo')->sum('amount');
+        
         for ($i = 1; $i <= 12; $i++) {
             $client_purchase = Sell::where('user_id', $user->id)->whereMonth('date', $i)->sum('amount');
             $client_purchases[] = $client_purchase;
@@ -63,7 +66,8 @@ class ClientController extends Controller
 
         if ($usuario == $user->id || $usuario == 1) {
             return view('client.purchase', compact(
-                'client', 'purchases', 'usuario', 'balance', 'client_purchases', 'ice_price', 'water_price'
+                'client', 'purchases', 'usuario', 'balance', 'client_purchases', 'ice_price', 'water_price',
+                'water_amount', 'ice_amount'
             ));
         } else {
             return back();

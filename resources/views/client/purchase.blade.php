@@ -17,6 +17,8 @@
                 @else
                     <p>Precio hielo: {{ $ice_price }}</p>
                 @endif
+                <p>Consumo agua: {{ $water_amount }} </p>
+                <p>Consumo agua: {{ $ice_amount }} </p>
             </div>
             @can('promotions')
             <div class="p-2">
